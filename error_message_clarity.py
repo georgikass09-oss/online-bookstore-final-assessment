@@ -1,4 +1,6 @@
-from flask import request, jsonify
+from flask import Flask, render_template, request, redirect, url_for, flash, jsonify, session
+from models import Book, Cart, User, Order, PaymentGateway, EmailService
+import uuid
 
 def register():
     """User registration with graceful error handling"""
@@ -21,4 +23,5 @@ def register():
     except KeyError as ke:
         return jsonify({"error": f"Missing field: {str(ke)}"}), 400
     except Exception as e:
+
         return jsonify({"error": "Unexpected error occurred. Please try again."}), 500 
