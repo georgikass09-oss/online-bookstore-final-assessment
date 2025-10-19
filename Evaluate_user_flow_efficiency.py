@@ -1,4 +1,6 @@
-from flask import request, jsonify
+from flask import Flask, render_template, request, redirect, url_for, flash, jsonify, session
+from models import Book, Cart, User, Order, PaymentGateway, EmailService
+import uuid
 
 def login():
     """User login with input validation and graceful error handling"""
@@ -21,4 +23,5 @@ def login():
     except Exception as e:
         # Catch unexpected errors (e.g., malformed form data, server issues)
         print(f"Login error: {e}")
+
         return jsonify({"error": "An unexpected error occurred. Please try again."}), 500
