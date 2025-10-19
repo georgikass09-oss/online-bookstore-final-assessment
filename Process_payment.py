@@ -1,4 +1,7 @@
 import pytest
+from flask import Flask, render_template, request, redirect, url_for, flash, jsonify, session
+from models import Book, Cart, User, Order, PaymentGateway, EmailService
+import uuid
 
 class PaymentGateway:
 
@@ -17,4 +20,5 @@ def test_empty_card():
 
 def test_missing_card_key():
     result = PaymentGateway.process_payment({})
+
     assert result['success'] is False
